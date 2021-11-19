@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Services\GithubServices;
 
 class ApiController extends Controller
 {
@@ -77,5 +78,17 @@ class ApiController extends Controller
             ],404);
         }
     }
+
+
+    public function getEmojis(){
+        
+        $githubService = new GithubServices;
+        $emojis = $githubService->getEmoji();
+
+        return view('welcome', compact('emojis'));
+    }
+
+
+
 
 }
